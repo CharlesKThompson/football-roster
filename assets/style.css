@@ -1,0 +1,14 @@
+* {
+    outline: 1px solid gold;
+}
+
+body {
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.player-card {
+    display: inline-block;
+    border: 1px solid black;
+}
