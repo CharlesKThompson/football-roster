@@ -8,7 +8,8 @@
     <title>Football Roster</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-<link rel="stylesheet" href="assets/style.css"></head>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
 
 <body>
 
@@ -17,32 +18,30 @@
             <div class="panel-heading">NFL Roster Control Center</div>
             <div class="panel-body">
 
-                <div class="my-team">
-                    <div class="container">
-                        <div class="row justify-content-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="my-team">
                             <h4>My team section</h4>
                             <div class="player-card">
                                 <img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" alt="fb-profile">
                             </div>
                         </div>
-                        <form onsubmit="app.controllers.playerCtrl.search(event)">
-                            <input type="text" placeholder="Name Search" name="name">
-                            <input type="text" placeholder="Team Search" name="team">
-                            <input type="text" placeholder="Position Search" name="position">
-                            <button type="submit">Search Here </button>
-                        </form>
-
-                        <div id="player-roster">
-
-                        </div>
-
+                            <form onsubmit="app.controllers.playerCtrl.search(event)">
+                                <input type="text" placeholder="Name Search" name="name">
+                                <input type="text" placeholder="Team Search" name="team">
+                                <input type="text" placeholder="Position Search" name="position">
+                                <button type="submit">Search Here </button>
+                            </form>
+                            
+                            <div id="player-roster">
+                                
+                            </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="player-service.js"></script>

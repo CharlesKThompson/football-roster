@@ -8,6 +8,38 @@ function PlayersService(callback) {
         return myTeamData
     }
 
+    this.getPlayersData = function () {
+
+        return playersData
+    }
+
+    var position = [
+
+        {
+            QB: "Quarterback"
+        }, {
+            RB: "Running Back"
+        }, {
+            WR: "Wide Reciever"
+        }, {
+            TE: "Tight End"
+        }, {
+            K: "Kicker"
+        }, {
+            ST: "Special Teams"
+        }, {
+            DST: "Defensive Special Teams"
+        }, {
+            DB: "Defensive Back"
+        }, {
+            DL: "Defensive Line"
+        }, {
+            LB: "Linebacker"
+        }, {
+            TQB: "undefined"
+        }
+    ]
+    ///////////////Draw Aid to Roster///////////////
     this.getPlayersByName = function (name) {
         return playersData.filter(function (name) {
             if (player.name == name) {
@@ -31,27 +63,46 @@ function PlayersService(callback) {
             }
         });
     }
-
+    ////////////////Selection Buttons///////////////////
+    this.addToTeam = function (position) {
+        var filteredPlayer = getPlayersByPosition(playersData, position)
+        if (
+            !filteredPlayer ||
+            getPlayersByPosition(myTeamData, position) ||
+            myTeamData.length >= 11
+        ) { return }
+        myTeamData.push(filteredPlayer)
+    }
+    //////////////Search Buttons/////////////////
     this.searchByName = function (name) {
-        var playersData = [];
-        var filteredPlayers = playersData.players.fullname
-
-        if (player.fullname === true) {
-            return true;
-        }
-        console.log(filteredPlayers)
+        var filteredPlayers = playersData.filter(function (name) {
+            if (player.name === true) {
+                return true;
+            }
+        });
+        console.log(filteredPlayers);
     }
 
     this.searchByTeam = function (team) {
-        var player = localData(myTeamData, team)
+        var filteredPlayers = playersData.filter(function (team) {
+            if (player.team === true) {
+                return true;
+            }
+        });
+        console.log(filteredPlayers);
     }
 
     this.searchByPosition = function (position) {
-        var player = localData(myTeamData, position)
+        var filteredPlayers = playersData.filter(function (position) {
+            if (player.position === true) {
+                return true;
+            }
+        });
+        console.log(filteredPlayers);
 
     }
 
-
+    ////////////////constant provided//////////////
     this.loadPlayersData = function (callback) {
         var localData = localStorage.getItem('playersData');
         if (localData) {

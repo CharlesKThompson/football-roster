@@ -17,6 +17,9 @@ PlayerController = function PlayerController() {
 
     }
 
+    function addToTeam(){
+        
+    }
     function loadPlayersData() {
         playerService.loadPlayersData(drawRoster)
 
@@ -32,6 +35,8 @@ PlayerController = function PlayerController() {
             <h4><b>Name:</b> ${player.firstname}</h4>
             <P><b>Team:</b> ${player.pro_team}</P>
             <p><b>Position:</b> ${player.position}</p>
+            <button class = "btn btn-primary" onclick="app.controllers.playerCtrl.addToTeam(${player.position})">Draft Player</button>
+
             `
         }
 
@@ -43,6 +48,23 @@ PlayerController = function PlayerController() {
         playerRosterElem.innerHTML = template
     }
 
+    function drawMyTeam(arr) {
+        var template = ''
+        for (var i = 0; i < arr.length; i++) {
+            var player = arr[i]
+            //insert the "no info" options here
+            template += `  
+             <h4>Player roster selection</h4>
+            <h4><b>Name:</b> ${player.firstname}</h4>
+            <P><b>Team:</b> ${player.pro_team}</P>
+            <p><b>Position:</b> ${player.position}</p>
+            <button class = "btn btn-primary" onclick="app.controllers.playerCtrl.removeFromTeam(${player.position})">Draft Player</button>
+
+            `
+        }
+
+        myTeamElem.innerHTML = template
+    }
     loadPlayersData()
 
 }
