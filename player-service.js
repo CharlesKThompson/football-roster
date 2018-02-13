@@ -1,11 +1,11 @@
 
 function PlayersService(callback) {
     var playersData = [];
-    var myTeamData = [];
-    var filteredPlayers = [];
+    var myTeam = [];
+    var filteredPlayer = [];
 
     this.getMyTeam = function () {
-        return myTeamData
+        return myTeam
     }
 
     this.getPlayersData = function () {
@@ -13,78 +13,160 @@ function PlayersService(callback) {
         return playersData
     }
 
-    var position = [
+    // var position = [
 
-        {
-            QB: "Quarterback"
-        }, {
-            RB: "Running Back"
-        }, {
-            WR: "Wide Reciever"
-        }, {
-            TE: "Tight End"
-        }, {
-            K: "Kicker"
-        }, {
-            ST: "Special Teams"
-        }, {
-            DST: "Defensive Special Teams"
-        }, {
-            DB: "Defensive Back"
-        }, {
-            DL: "Defensive Line"
-        }, {
-            LB: "Linebacker"
-        }, {
-            TQB: "undefined"
-        }
-    ]
+    //     {
+    //         QB: "Quarterback"
+    //     }, {
+    //         RB: "Running Back"
+    //     }, {
+    //         WR: "Wide Reciever"
+    //     }, {
+    //         TE: "Tight End"
+    //     }, {
+    //         K: "Kicker"
+    //     }, {
+    //         ST: "Special Teams"
+    //     }, {
+    //         DST: "Defensive Special Teams"
+    //     }, {
+    //         DB: "Defensive Back"
+    //     }, {
+    //         DL: "Defensive Line"
+    //     }, {
+    //         LB: "Linebacker"
+    //     }, {
+    //         TQB: "undefined"
+    //     }
+    // ]
+
+    // var teamName = [{
+    //     DET = "Detroit"
+    // }, {
+    //     TB = "Tampa Bay"
+    // }, {
+    //     MIA = "Maiami"
+    // }, {
+    //     NYG = "New York Giants"
+    // }, {
+    //     NYJ = "New York Jets"
+    // }, {
+    //     PIT = "Pittsburgh Steelers"
+    // }, {
+    //     CAR = "Carolina Panthers"
+    // }, {
+    //     TEN = "Tennessee Titans"
+    // }, {
+    //     CHI = "Chicago Bears"
+    // }, {
+    //     KC = "Kansas City Chiefs"
+    // }, {
+    //     GB = "Green Bay Packers"
+    // }, {
+    //     LAR = "Los Angeles Rams"
+    // }, {
+    //     LAC = "Los Angeles Chargers"
+    // }, {
+    //     DAL = "Dallas Cowboys"
+    // }, {
+    //     BUF = "Buffalo Bills"
+    // }, {
+    //     DEN = "Denver Broncos"
+    // }, {
+    //     IND = "Indianapolis Colts"
+    // }, {
+    //     BAL = "Baltimore Ravens"
+    // }, {
+    //     PHI = "Phillidelphia Eagles"
+    // }, {
+    //     ARI = "Arizona Cardinals"
+    // }, {
+    //     SEA = "Seattle Seahawks"
+    // }, {
+    //     CLE = "Cleveland Browns"
+    // }, {
+    //     ATL = "Atlanta Falcons"
+    // }, {
+    //     MIN = "Minnesota Vikings"
+    // }, {
+    //     NE = "New England Patriots"
+    // }, {
+    //     OAK = "Oakland Raiders"
+    // }, {
+    //     WAS = "Washington Redskins"
+    // }, {
+    //     TEN = "Tennessee Titans"
+    // }, {
+    //     HOU = "Houston Texans"
+    // }, {
+    //     NO = "New Orleans Saints"
+
+   // }]
+   this.searchByName = function (name) {
+      var filteredPlayers = playersData.filter(function(name){
+          if(player.name === player.fullname){
+              return true;
+          }
+      })
+    }
+    
+    this.searchByTeam = function (teamName) {
+     var filteredPlayers = playersData.filter(function(player) {
+            if (player.team === player.teamName) {
+                return true;
+            }
+        });
+    }
+    
+    this.searchByPosition = function (position) {
+        var filteredPlayer = playersData.filter(function (player) {
+            if (player.position === player.position) {
+                return true;
+            }
+        });
+    }
+    
     ///////////////Draw Aid to Roster///////////////
-    this.getPlayersByName = function (name) {
-        return playersData.filter(function (name) {
-            if (player.name == name) {
-                return true;
-            }
-        });
-    }
-
-    this.getPlayersByTeam = function (teamName) {
-        return playersData.filter(function (player) {
-            if (player.team == teamName) {
-                return true;
-            }
-        });
-    }
-
-    this.getPlayersByPosition = function (position) {
-        return playersData.filter(function (position) {
-            if (player.position == position) {
-                return true;
-            }
-        });
+    function getPlayersById(arr,id) {
+       for (let i = 0; i < arr.length; i++) {
+           var player = arr[i];
+           if(id == player.id) {
+               return player
+           }
+       }
     }
     ////////////////Selection Buttons///////////////////
-    this.addToTeam = function (position) {
-        var filteredPlayer = getPlayersByPosition(playersData, position)
+    
+    this.addToTeam = function (id) {
+        var filteredPlayer = getPlayersById(playersData, id);
         if (
             !filteredPlayer ||
-            getPlayersByPosition(myTeamData, position) ||
-            myTeamData.length >= 11
-        ) { return }
-        myTeamData.push(filteredPlayer)
+            getPlayersById(myTeam, id) ||
+            myTeam.length >= 11
+        )
+     { return }
+        myTeam.push(filteredPlayer)
+    }
+
+    this.removeFromTeam = function (id) {
+        var filteredPlayer = getPlayersById(playersData, id)
+        if (!filteredPlayer) {return}
+        var i = myTeam.indexOf(filteredPlayer)
+        myTeam.splice(i, 1)
+
     }
     //////////////Search Buttons/////////////////
     this.searchByName = function (name) {
-        var filteredPlayers = playersData.filter(function (name) {
+        var filteredPlayer = playersData.filter(function (name) {
             if (player.name === true) {
                 return true;
             }
         });
-        console.log(filteredPlayers);
+        console.log(filteredPlayer);
     }
 
     this.searchByTeam = function (team) {
-        var filteredPlayers = playersData.filter(function (team) {
+        var filteredPlayer = playersData.filter(function (team) {
             if (player.team === true) {
                 return true;
             }
@@ -93,12 +175,12 @@ function PlayersService(callback) {
     }
 
     this.searchByPosition = function (position) {
-        var filteredPlayers = playersData.filter(function (position) {
+        var filteredPlayer = playersData.filter(function (position) {
             if (player.position === true) {
                 return true;
             }
         });
-        console.log(filteredPlayers);
+        console.log(filteredPlayer);
 
     }
 

@@ -19,21 +19,18 @@
 
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="player-card">
-                            <div class="my-team">
-                                <h4>My team section</h4>
-                                <img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" alt="fb-profile">
-                            </div>
+                        <h4>My team section</h4>
+                        <img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" alt="fb-profile">
+                        <div id="my-team">
                         </div>
                         <form onsubmit="app.controllers.playerCtrl.search(event)">
                             <input type="text" placeholder="Name Search" name="name">
                             <input type="text" placeholder="Team Search" name="team">
                             <input type="text" placeholder="Position Search" name="position">
-                            <button type="submit">Search Here </button>
+                            <button type="submit" onclick="app.controllers.playerCtrl.search">Search Here </button>
                         </form>
 
                         <div id="player-roster">
-
                         </div>
                     </div>
 

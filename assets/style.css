@@ -12,5 +12,5 @@ body {
     color: white;
     display: inline-block;
     border: 1px solid black;
-    
+    justify-content: center;
 }
