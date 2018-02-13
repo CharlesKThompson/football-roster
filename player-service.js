@@ -97,33 +97,41 @@ function PlayersService(callback) {
     // }, {
     //     TEN = "Tennessee Titans"
     // }, {
-    //     HOU = "Houston Texans"
-    // }, {
-    //     NO = "New Orleans Saints"
+        //     HOU = "Houston Texans"
+        // }, {
+            //     NO = "New Orleans Saints"
+            
+            // }]
 
-   // }]
+
+
+
+            //////////////Search Buttons/////////////////
    this.searchByName = function (name) {
-      var filteredPlayers = playersData.filter(function(name){
-          if(player.name === player.fullname){
-              return true;
-          }
-      })
+      var filteredPlayers = playersData.filter(function(player){
+          if(player.fullname === name){
+              return true
+            }
+      });
+      return filteredPlayers
     }
     
     this.searchByTeam = function (teamName) {
      var filteredPlayers = playersData.filter(function(player) {
-            if (player.team === player.teamName) {
-                return true;
+            if (player.team ===teamName) {
+                return true
             }
         });
+        return filteredPlayers
     }
     
     this.searchByPosition = function (position) {
-        var filteredPlayer = playersData.filter(function (player) {
-            if (player.position === player.position) {
-                return true;
+        var filteredPlayers = playersData.filter(function (player) {
+            if (player.position === position) {
+                return true
             }
         });
+        return filteredPlayers
     }
     
     ///////////////Draw Aid to Roster///////////////
@@ -153,34 +161,6 @@ function PlayersService(callback) {
         if (!filteredPlayer) {return}
         var i = myTeam.indexOf(filteredPlayer)
         myTeam.splice(i, 1)
-
-    }
-    //////////////Search Buttons/////////////////
-    this.searchByName = function (name) {
-        var filteredPlayer = playersData.filter(function (name) {
-            if (player.name === true) {
-                return true;
-            }
-        });
-        console.log(filteredPlayer);
-    }
-
-    this.searchByTeam = function (team) {
-        var filteredPlayer = playersData.filter(function (team) {
-            if (player.team === true) {
-                return true;
-            }
-        });
-        console.log(filteredPlayers);
-    }
-
-    this.searchByPosition = function (position) {
-        var filteredPlayer = playersData.filter(function (position) {
-            if (player.position === true) {
-                return true;
-            }
-        });
-        console.log(filteredPlayer);
 
     }
 
