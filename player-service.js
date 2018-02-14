@@ -40,22 +40,23 @@ function PlayersService(callback) {
     //     }
     // ]
 
-    // var teamName = [{
-    //     DET = "Detroit"
+    // var teamAbb = {[
+    //    {
+    //     DET: "Detroit"
     // }, {
-    //     TB = "Tampa Bay"
+    //     TB : "Tampa Bay"
     // }, {
-    //     MIA = "Maiami"
+    //     MIA : "Maiami"
     // }, {
-    //     NYG = "New York Giants"
+    //     NYG : "New York Giants"
     // }, {
-    //     NYJ = "New York Jets"
+    //     NYJ : "New York Jets"
     // }, {
-    //     PIT = "Pittsburgh Steelers"
+    //     PIT : "Pittsburgh Steelers"
     // }, {
-    //     CAR = "Carolina Panthers"
+    //     CAR : "Carolina Panthers"
     // }, {
-    //     TEN = "Tennessee Titans"
+    //     TEN : "Tennessee Titans"
     // }, {
     //     CHI = "Chicago Bears"
     // }, {
@@ -97,34 +98,42 @@ function PlayersService(callback) {
     // }, {
     //     TEN = "Tennessee Titans"
     // }, {
-        //     HOU = "Houston Texans"
-        // }, {
-            //     NO = "New Orleans Saints"
-            
-            // }]
+    //         HOU = "Houston Texans"
+    //     }, {
+    //             NO = "New Orleans Saints"
+    // }]
+    //}
 
 
 
 
-            //////////////Search Buttons/////////////////
-   this.searchByName = function (name) {
-      var filteredPlayers = playersData.filter(function(player){
-          if(player.fullname === name){
-              return true
+    //////////////Search Buttons/////////////////
+    this.searchByName = function (name) {
+        var filteredPlayers = playersData.filter(function (player) {
+            if (player.fullname == name) {
+                return true
+            } else {
+                if (player.name == name) {
+                    return true
+                } else {
+                    if (player.lastname == name) {
+                        return true
+                    }
+                }
             }
-      });
-      return filteredPlayers
+        });
+        return filteredPlayers
     }
-    
+
     this.searchByTeam = function (teamName) {
-     var filteredPlayers = playersData.filter(function(player) {
-            if (player.team ===teamName) {
+        var filteredPlayers = playersData.filter(function (player) {
+            if (player.pro_team === teamName) {
                 return true
             }
         });
         return filteredPlayers
     }
-    
+
     this.searchByPosition = function (position) {
         var filteredPlayers = playersData.filter(function (player) {
             if (player.position === position) {
@@ -133,32 +142,31 @@ function PlayersService(callback) {
         });
         return filteredPlayers
     }
-    
+
     ///////////////Draw Aid to Roster///////////////
-    function getPlayersById(arr,id) {
-       for (let i = 0; i < arr.length; i++) {
-           var player = arr[i];
-           if(id == player.id) {
-               return player
-           }
-       }
+    function getPlayersById(arr, id) {
+        for (let i = 0; i < arr.length; i++) {
+            var player = arr[i];
+            if (id == player.id) {
+                return player
+            }
+        }
     }
     ////////////////Selection Buttons///////////////////
-    
+
     this.addToTeam = function (id) {
         var filteredPlayer = getPlayersById(playersData, id);
         if (
             !filteredPlayer ||
             getPlayersById(myTeam, id) ||
             myTeam.length >= 11
-        )
-     { return }
+        ) { return }
         myTeam.push(filteredPlayer)
     }
 
     this.removeFromTeam = function (id) {
         var filteredPlayer = getPlayersById(playersData, id)
-        if (!filteredPlayer) {return}
+        if (!filteredPlayer) { return }
         var i = myTeam.indexOf(filteredPlayer)
         myTeam.splice(i, 1)
 
